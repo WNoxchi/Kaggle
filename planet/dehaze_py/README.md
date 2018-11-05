@@ -1,3 +1,7 @@
+# NOTE: this folder forked and editted from: https://github.com/anhenghuang/dehaze
+---
+
+
 # dehaze 暗通道去雾
 Realizing Kaiming He's paper 'Single Image Haze Removal Using Dark Channel Prior'
 

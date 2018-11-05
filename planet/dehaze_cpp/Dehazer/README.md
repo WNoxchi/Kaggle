@@ -1,4 +1,5 @@
-
+# NOTE: this folder forked and editted from: https://github.com/cedarz/DeHaze
+---
 
 
 # DeHaze
