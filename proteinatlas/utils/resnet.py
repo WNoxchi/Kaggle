@@ -19,11 +19,11 @@ class Resnet4Channel(nn.Module):
         # keep corresponding weights and initialize new weights with zeros
         # this technique from: https://www.kaggle.com/iafoss/pretrained-resnet34-with-rgby-0-460-public-lb
         w = encoder.conv1.weight
-        self.conv1 = nn.Cond2d(4, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.conv1 = nn.Conv2d(4, 64, kernel_size=7, stride=2, padding=3, bias=False)
         self.conv1.weight = nn.Parameter(torch.cat((w,torch.zeros(64,1,7,7)),dim=1))
-
+        
         self.bn1 = encoder.bn1
-        self.relu = nn.ReLU(inplace=True)
+        self.relu = nn.ReLU(inplace=True) 
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
 
         self.layer1 = encoder.layer1
@@ -33,7 +33,7 @@ class Resnet4Channel(nn.Module):
 
         self.avgpool = encoder.avgpool
         self.fc = nn.Linear(512 * (1 if encoder_depth==34 else 4), num_classes)
-
+        
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
